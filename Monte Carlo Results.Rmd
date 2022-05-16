@@ -15,7 +15,7 @@ library(ggthemes)
 ```
 
 ```{r load data}
-load('mc_sim_v1.Rdata')
+load('Clean_Data/mc_sim_v1.Rdata')
 ```
 
 

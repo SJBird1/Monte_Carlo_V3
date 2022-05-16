@@ -9,7 +9,7 @@ library(writexl)
 
 # Read in Assumptions Data ------------------------------------------------
 
-df_assumptions <- read_excel("assumptions.xlsx") %>%
+df_assumptions <- read_excel("Raw_Data/assumptions.xlsx") %>%
   clean_names() %>%
   mutate(
     min_plan = round(0.95*plan_out,0), 
@@ -93,7 +93,7 @@ df_expected <- round(df_mc_out * (1 - df_mc_waste1) * df_mc_waste2, 0) %>%
       total >= goal, "success", "failure"))
 
 
-save(df_expected, file = 'mc_sim_v1.Rdata')
+save(df_expected, file = 'Clean_Data/mc_sim_v1.Rdata')
 
 
 skim(df_expected)
