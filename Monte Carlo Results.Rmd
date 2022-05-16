@@ -1,0 +1,62 @@
+---
+title: "Monte Carlo Results"
+author: "Sam Bird"
+date: '2022-05-13'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r load packages}
+library(tidyverse)
+library(ggthemes)
+```
+
+```{r load data}
+load('mc_sim_v1.Rdata')
+```
+
+
+```{r text for graphs}
+n <- as.numeric(nrow(df_expected))
+
+n_success_mc <- as.numeric(
+  (df_expected %>% count(success_ind) %>% filter(success_ind == "success"))[1,2])
+
+per_success = str_c(
+  round(
+    (n_success_mc/n)*100,0), "%")
+  
+success_mc <- str_c("Number of successes from Monte Carlo: ", n_success_mc)
+trials_mc <- str_c("Count of Monte Carlo Simulations: ", n)
+chance <- "Chance of Success: "
+  
+```
+
+
+
+
+```{r graph, include=TRUE}
+
+ggplot(
+  df_expected, 
+  aes(
+    x = total, 
+    fill = success_ind)) + 
+  geom_histogram(
+    color = "#262626") +
+  scale_fill_manual(
+    values = c("#d9d9d9", "#3b528b")) +
+  theme_classic() +
+  labs(
+    x = "",
+    y = "")
+
+
+
+```
+
+
+
