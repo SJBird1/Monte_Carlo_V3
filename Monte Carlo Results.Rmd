@@ -31,7 +31,7 @@ per_success = str_c(
   
 success_mc <- str_c("Number of successes from Monte Carlo: ", n_success_mc)
 trials_mc <- str_c("Count of Monte Carlo Simulations: ", n)
-chance <- "Chance of Success: "
+chance <- str_c("Chance of Success: ", per_success)
   
 ```
 
@@ -52,7 +52,14 @@ ggplot(
   theme_classic() +
   labs(
     x = "",
-    y = "")
+    y = "") +
+  scale_x_continuous(labels = scales::comma) +
+  scale_y_continuous(labels = scales::comma) +
+  annotate(geom = "text", x = 1900, y = 1000, label=success_mc) +
+  annotate(geom = "text", x = 1900, y = 900, label = trials_mc) +
+  annotate(geom = "text", x = 2075, y = 1000, label = chance) +
+  labs(
+    title = "Monte Carlo Simulation Results: Chance of Success")
 
 
 
